@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/DayByDayReact/static/css/main.47b58bbf.chunk.css",
+    "main.js": "/DayByDayReact/static/js/main.31eb2b64.chunk.js",
+    "main.js.map": "/DayByDayReact/static/js/main.31eb2b64.chunk.js.map",
+    "runtime-main.js": "/DayByDayReact/static/js/runtime-main.9f0111be.js",
+    "runtime-main.js.map": "/DayByDayReact/static/js/runtime-main.9f0111be.js.map",
+    "static/css/2.ef9168ec.chunk.css": "/DayByDayReact/static/css/2.ef9168ec.chunk.css",
+    "static/js/2.bdfe30dd.chunk.js": "/DayByDayReact/static/js/2.bdfe30dd.chunk.js",
+    "static/js/2.bdfe30dd.chunk.js.map": "/DayByDayReact/static/js/2.bdfe30dd.chunk.js.map",
+    "static/js/3.4c3523ae.chunk.js": "/DayByDayReact/static/js/3.4c3523ae.chunk.js",
+    "static/js/3.4c3523ae.chunk.js.map": "/DayByDayReact/static/js/3.4c3523ae.chunk.js.map",
+    "index.html": "/DayByDayReact/index.html",
+    "static/css/2.ef9168ec.chunk.css.map": "/DayByDayReact/static/css/2.ef9168ec.chunk.css.map",
+    "static/css/main.47b58bbf.chunk.css.map": "/DayByDayReact/static/css/main.47b58bbf.chunk.css.map",
+    "static/js/2.bdfe30dd.chunk.js.LICENSE.txt": "/DayByDayReact/static/js/2.bdfe30dd.chunk.js.LICENSE.txt",
+    "static/media/spicy_logo_blanco.36a11ad0.png": "/DayByDayReact/static/media/spicy_logo_blanco.36a11ad0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9f0111be.js",
+    "static/css/2.ef9168ec.chunk.css",
+    "static/js/2.bdfe30dd.chunk.js",
+    "static/css/main.47b58bbf.chunk.css",
+    "static/js/main.31eb2b64.chunk.js"
+  ]
+}
