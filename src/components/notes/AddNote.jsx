@@ -26,14 +26,14 @@ export default function AddNote(props){
 
   return (
     <div>
-      <Card body>
-        <CardTitle tag="h5">Añadir un nuevo Note</CardTitle>
+      <Card body style={{background: "#211E2B", color:"white", border:"#505B7E"}}>
+        <CardTitle tag="h5">Add a new Note</CardTitle>
         <Form>
           <FormGroup>
-            <Label for="aMensaje">Mensaje</Label>
-            <Input style={{height: '200px'}} type="textarea" name="message" value={message} id="aMensaje" placeholder="Introduce un mensaje" onChange={(e) => setMessage(e.target.value)}/>
+            <Label for="aMensaje">Message</Label>
+            <Input style={{height: '200px'}} type="textarea" name="message" value={message} id="aMensaje" placeholder="Introduce a message" onChange={(e) => setMessage(e.target.value)}/>
           </FormGroup>
-          <Button color="info" onClick={addNote}>Añadir</Button>
+          <Button color="info" onClick={addNote}>Add</Button>
         </Form>
       </Card>
     </div>
