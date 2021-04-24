@@ -14,6 +14,8 @@ export default function EditNote(props){
       .then((res) => checkPUTNote(res));
   }
 
+  /*AÑADIR METODO PARA LLAMAR A LA APICALLS CON METODO DE UPVOTES*/
+
   //Check the response from the server
   const checkPUTNote = (res) => {
     if (res === "OK"){
@@ -30,14 +32,14 @@ export default function EditNote(props){
 
   return (
     <div>
-      <Card body>
-        <CardTitle tag="h5">Editar note</CardTitle>
+      <Card body style={{background: "#211E2B", color:"white", border:"#505B7E"}}>
+        <CardTitle tag="h5">Edit Note</CardTitle>
         <Form>
           <FormGroup>
-            <Label for="aDescripcion">Mensaje</Label>
-            <Input style={{height: '200px'}} type="textarea" name="message" id="aDescripcion" placeholder="Introduce un mensaje" value={message} onChange={(e) => setMessage(e.target.value)}/>
+            <Label for="aDescripcion">Message</Label>
+            <Input style={{height: '200px'}} type="textarea" name="message" id="aDescripcion" placeholder="Introduce a message" value={message} onChange={(e) => setMessage(e.target.value)}/>
           </FormGroup>
-            <Button color="info" onClick={editNote}>Actualizar</Button>
+            <Button color="info" onClick={editNote}>Update</Button>
         </Form>
       </Card>
     </div>
