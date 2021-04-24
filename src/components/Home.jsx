@@ -4,10 +4,12 @@ import {Container, Row, Col } from 'reactstrap';
 import HeaderDashboard from './HeaderDashboard';
 import MyNoteList from './notes/MyNoteList';
 import NoteList from './notes/NoteList';
+import VotedNoteList from './notes/VotedNoteList';
 
 export default function Home(props){
 
   const [show, setShow] = useState(<NoteList />);
+  const [votedList, setVotedList] = useState(<VotedNoteList/>);
  
   const handleLogout = () => {
     sessionStorage.clear();
@@ -17,8 +19,10 @@ export default function Home(props){
   const handleOnShow = (option) => {
     if (option === 1){
       setShow(<NoteList />);
+      setVotedList(<VotedNoteList/>);
     }else if (option === 2){
       setShow(<MyNoteList />);
+      setVotedList(<VotedNoteList/>);
     }
   }
 
@@ -28,6 +32,7 @@ export default function Home(props){
   if (sessionStorage.getItem("name") === null){
     props.history.push("/");
   }
+
   else{
     return (
       <Container>
@@ -35,9 +40,12 @@ export default function Home(props){
           <Col><HeaderDashboard onLogout={handleLogout} onShow= {handleOnShow} /></Col>
         </Row>
         <Row>
-          <Col xs="12">
-              {show}
-            </Col>
+          <Col>
+            {votedList}
+          </Col>
+          <Col>
+            {show}
+          </Col>
         </Row>
       </Container>
     );
