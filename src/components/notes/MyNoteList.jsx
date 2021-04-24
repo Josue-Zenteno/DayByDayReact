@@ -7,9 +7,7 @@ import { Row, Col, Card, CardTitle, Badge, CardBody,
 Table, Alert, Button, Nav, NavItem, NavLink, TabContent,
 TabPane, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
-import { AiOutlineHeart, AiOutlineRetweet } from 'react-icons/ai';
-import { BsChat, BsUpload } from "react-icons/bs";
+import { FaTrashAlt, FaUserCircle, FaPenAlt } from 'react-icons/fa';
 
 import { getMyNotes, deleteNote } from "../../utils/apicalls.js";
 import { getDateInStrFormat } from "../../utils/utils.js";
@@ -20,7 +18,7 @@ import EditNote from './EditNote';
 export default function MyNoteList(props){
 
   const [notes, setNotes] = useState([]);
-  const [edit, setEdit] = useState(<Alert color="danger">Seleccione editar un Note de la lista</Alert>);
+  const [edit, setEdit] = useState(<Alert color="danger">Choose a Note from the list</Alert>);
   const [activeTab, setActiveTab] = useState('1');
   const [showDeleteModal, setShowDeleteModal] = useState(null);
 
@@ -65,7 +63,7 @@ export default function MyNoteList(props){
     //if ok, remove modal and reset edit component
     if (res === "OK"){
       setShowDeleteModal(null);
-      setEdit(<Alert color="warning">Seleccione editar un note de la lista</Alert>);
+      setEdit(<Alert>Choose a Note from the list</Alert>);
       handleUpdateMyNotes();
     }else{
       //TODO Show a modal when error from server
@@ -84,56 +82,40 @@ export default function MyNoteList(props){
     <div>
       {showDeleteModal}
       <Row>
-        <Col xs="7">
-          <CardTitle tag="center"><Alert color="info"><strong>Mis Notes </strong><Badge pill>{notes.length}</Badge></Alert></CardTitle>
-          <Table>
-            <tbody>
-              { notes.map((note, index) => {
-                return(<div>
-                  <div>
-                  <Row>
-                    <Col>
-                      <Card>
-                        <CardBody>
-                          <Row><Col><strong><img src={note.image} alt="Img"/> {note.user}</strong></Col>
-                               <Col align="right">
-                                  <Button outline onClick={() => handleShowEdit(note)}><FaEdit /></Button>
-                                  {' '}
-                                  <Button outline onClick={() => askForDelete(note)}><FaTrashAlt /></Button>
-                                </Col>
-                          </Row>
-                          <br></br>
-                          <Row>
-                            <Col>
-                              {note.message}
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col align="right">
-                              <small>{getDateInStrFormat(new Date(note.publicationdate))}</small>
-                            </Col>
-                          </Row>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                  </Row>
-                  <br/>
-              </div>
-                </div>)
-              })}
-            </tbody>
-          </Table>
+        <Col>
+          <CardTitle tag="center"><Alert style={{background: "#592151", color:"white", border:"#592151"}}><strong>Profile   </strong><FaUserCircle/></Alert></CardTitle>
         </Col>
-        <Col xs="5">
+      </Row>
+      <Row>
+          <Col>
+            <Card style={{background:"#2A478B", color: "white"}}>
+              <CardBody>
+                <Row>
+                  <Col>
+                    <strong><img src={sessionStorage.getItem('image')} alt="Img"/> {sessionStorage.getItem('name')}</strong>
+                  </Col>
+                </Row>
+                </CardBody>
+            </Card>
+          </Col>
+      </Row>
+      <br></br>
+      <Row>
+        <Col>
+          <CardTitle tag="center"><Alert style={{background: "#592151", color:"white", border:"#592151"}}><strong>My Notes </strong><Badge pill>{notes.length}</Badge></Alert></CardTitle>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           <Nav tabs>
-            <NavItem>
+            <NavItem style={{background: "#211E2B", color:"white", border:"#592151"}}>
               <NavLink href="#" className={classnames({ active: activeTab === '1' })} onClick={() => toggleTab('1')}>
-                Añadir
+                Add
               </NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem style={{background: "#211E2B", color:"white", border:"#592151"}}>
               <NavLink href="#" className={classnames({ active: activeTab === '2' })} onClick={() => toggleTab('2')}>
-                Editar
+                Edit
               </NavLink>
             </NavItem>
           </Nav>
@@ -155,6 +137,52 @@ export default function MyNoteList(props){
           </TabContent>
         </Col>
       </Row>
+      <br></br>
+      <Row>
+        <Col>
+          <Table>
+            <tbody>
+              { notes.map((note, index) => {
+                return(<div>
+                  <div>
+                  <Row>
+                    <Col>
+                      <Card  style={{background: "#353044", color:"white"}}>
+                        <CardBody>
+                          <Row><Col><strong><img src={note.image} alt="Img"/> {note.user}</strong></Col>
+                               <Col align="right">
+                                  <Button style={{background:"#F69C38", color: "white"}} outline onClick={() => handleShowEdit(note)}><FaPenAlt/></Button>
+                                  {' '}
+                                  <Button style={{background:"#F45873", color: "white"}} outline onClick={() => askForDelete(note)}><FaTrashAlt /></Button>
+                                </Col>
+                          </Row>
+                          <br></br>
+                          <Row>
+                            <Col>
+                              {note.message}
+                            </Col>
+                          </Row>
+                          <br></br>
+                          <Row>
+                            <Col align="left">
+                              <small>{getDateInStrFormat(new Date(note.publicationdate))}</small>
+                            </Col>
+                            <Col align="right">
+                              <Badge color="info" pill>Votes: {note.votes}</Badge>
+                            </Col>
+                          </Row>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                  </Row>
+                  <br/>
+              </div>
+                </div>)
+              })}
+            </tbody>
+          </Table>
+        </Col>
+        </Row>
     </div>
   );
 }
