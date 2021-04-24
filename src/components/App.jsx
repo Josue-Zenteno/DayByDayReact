@@ -6,7 +6,9 @@ import config from '../config.js';
 import SpicyLogo from '../images/spicy_logo_blanco.png';
 
 import NoteList from './notes/NoteList';
+import VotedNoteList from './notes/VotedNoteList';
 
+import '../styles.css';
 //Un estilo, para no tener que tener un css
 var imgStyle = {
   maxWidth: "85px",
@@ -38,15 +40,15 @@ export default function App(props){
     <Container>
       <Row>
         <Col>
-          <Navbar color="dark" light expand="md">
-          <Media style={imgStyle} object src={SpicyLogo} alt="Bird"/><NavbarBrand><h4 className="text-white">Day By Day</h4></NavbarBrand>
-            <Nav className="ml-auto" navbar>
+          <Navbar style={{background:"#762C6B"}} light expand="md">
+          <Media style={imgStyle} object src={SpicyLogo} alt="Bird"/><NavbarBrand><h1 className="text-white">Day By Day</h1></NavbarBrand>
+            <Nav className="ml-auto" style={{background:"white"}} navbar>
               <NavItem>
                 {loginMessage}
                 <GoogleLogin
                   clientId={config.clientID}
                   buttonText="Sign in with Google"
-                  theme='dark'
+                  theme='light'
                   onSuccess={responseGoogleSuccess}
                   onFailure={responseGoogleFailure}
                 />
@@ -56,7 +58,10 @@ export default function App(props){
         </Col>
       </Row>
       <Row>
-        <Col xs= "12">
+        <Col>
+          <VotedNoteList/>
+        </Col>
+        <Col>
           <NoteList/>
         </Col>
       </Row>
