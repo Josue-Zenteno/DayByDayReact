@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Card, CardTitle, Badge, CardBody, Table, Alert, Button } from 'reactstrap';
-
-import { BiArrowFromBottom, BiArrowFromTop } from 'react-icons/bi';
+import { Row, Col, Card, CardTitle, CardBody, Table, Alert, Badge } from 'reactstrap';
 
 import '../../styles.css';
 import { getAllNotes } from "../../utils/apicalls.js";
@@ -17,16 +15,6 @@ export default function NoteList(){
     });
   }
 
-  const makeUpVote = () => {
-    //TODO add an UpVote
-    getNotes()
-  }
-
-  const makeDownVote = () => {
-    //TODO remove an UpVote and add a DownVote
-    getNotes()
-  }
-
   //Este useEffect al no tener parametros es equivalente al ComponentWillMount de tal forma que se ejcutará al ser renderizado
   useEffect(() =>{
     getNotes();
@@ -34,7 +22,7 @@ export default function NoteList(){
 
   return (
     <div>
-      <CardTitle tag="center"><Alert color="secondary"><strong>Notes  </strong><Badge pill color="secondary">{notes.length}</Badge></Alert></CardTitle>
+      <CardTitle tag="center"><Alert style={{background: "#592151", color:"white", border:"#592151"}}><strong>New Notes  </strong></Alert></CardTitle>
       <Table>
         <tbody>
           { notes.map((note, index) => {
@@ -42,22 +30,26 @@ export default function NoteList(){
               <div>
                   <Row>
                     <Col>
-                      <Card>
+                      <Card style={{background: "#353044", color:"white"}}>
                         <CardBody>
-                          <Row><Col><strong><img src={note.image} alt="Img"/> {note.user}</strong></Col></Row>
+                          <Row>
+                            <Col>
+                              <strong><img src={note.image} alt="Img"/> {note.user}</strong>
+                            </Col>
+                          </Row>
                           <br></br>
                           <Row>
                             <Col>
                               {note.message}
                             </Col>
-                            <Col align="right">
-                              <Button color="secondary" onClick={makeDownVote}><BiArrowFromTop/></Button>
-                              <Button color="info" onClick={makeUpVote}><BiArrowFromBottom /></Button>
-                            </Col>
                           </Row>
+                          <br></br>
                           <Row>
                             <Col align="left">
                               <small>{getDateInStrFormat(new Date(note.publicationdate))}</small>
+                            </Col>
+                            <Col align="right">
+                              <Badge color="info" pill>Votes: {note.votes}</Badge>
                             </Col>
                           </Row>
                         </CardBody>
